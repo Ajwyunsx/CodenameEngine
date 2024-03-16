@@ -78,9 +78,6 @@ jobs:
       - name: Create Version Tag
         run: echo "${{github.run_id}}" > VERSION
 
-      - name: lol
-        run: add `sudo mount -o remount,size=8G,noatime /tmp`
-
       - name: Setup Lime
         run: |
           haxelib run lime setup -alias -y
@@ -95,7 +92,8 @@ jobs:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
       - name: Compile
-        run: haxelib run lime build android -D NO_PRECOMPILED_HEADERS --app-version="4.0.0-${{ github.run_id}}"
+        run: add `sudo mount -o remount,size=8G,noatime /tmp`
+             haxelib run lime build android -D NO_PRECOMPILED_HEADERS --app-version="4.0.0-${{ github.run_id}}"
       
       - name: Clear Previous Cache
         uses: actions/github-script@main
