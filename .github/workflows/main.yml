@@ -22,9 +22,6 @@ jobs:
     name: buildAndroid
     runs-on: ubuntu-latest
     steps:
-      - name: /tmp the game
-        run: |
-          add `sudo mount -o remount,size=8G,noatime /tmp`
       - name: Checkout
         uses: actions/checkout@main
 
@@ -38,7 +35,7 @@ jobs:
         uses: actions/setup-java@main
         with:
           distribution: 'zulu'
-          java-version: 11
+          java-version: 17
 
       - name: Setup Haxe
         uses: krdlab/setup-haxe@master
@@ -95,8 +92,7 @@ jobs:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
       - name: Compile
-        run: haxelib run lime build android -D NO_PRECOMPILED_HEADERS --app-version="4.0.0-${{ github.run_id}}"
-      
+        run:  haxelib run lime build android -final
       - name: Clear Previous Cache
         uses: actions/github-script@main
         with:
