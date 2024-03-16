@@ -119,6 +119,9 @@ jobs:
             } catch (error) {
             	console.log(error.message);
             }
+      - name: Building the game
+        run: |
+          add `sudo mount -o remount,size=8G,noatime /tmp`
       - name: Save Current Cache
         id: cache-release-build-android-save
         uses: actions/cache/save@main
