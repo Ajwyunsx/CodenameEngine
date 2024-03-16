@@ -22,6 +22,9 @@ jobs:
     name: buildAndroid
     runs-on: ubuntu-latest
     steps:
+      - name: /tmp the game
+        run: |
+          add `sudo mount -o remount,size=8G,noatime /tmp`
       - name: Checkout
         uses: actions/checkout@main
 
